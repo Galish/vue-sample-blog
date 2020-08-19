@@ -14,17 +14,23 @@
 		<ul>
 			<li>
 				<a
+					class="ui primary button"
 					href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
 					target="_blank"
 					rel="noopener"
-				>babel</a>
+				>
+					babel
+				</a>
 			</li>
 			<li>
 				<a
+					class="ui secondary button"
 					href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
 					target="_blank"
 					rel="noopener"
-				>eslint</a>
+				>
+					eslint
+				</a>
 			</li>
 		</ul>
 		<h3>Essential Links</h3>
