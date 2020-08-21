@@ -1,31 +1,34 @@
 <template>
-	<div id="app">
+	<div class="ui container">
 		<img
 			alt="Vue logo"
 			src="./assets/logo.png"
 		>
-		<HelloWorld msg="Welcome to Your Vue.js App" />
+
+		<UsersList
+			:users="users"
+		/>
 	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { mapActions, mapGetters } from 'vuex'
+
+import UsersList from './components/UsersList.vue'
 
 export default {
 	name: 'App',
 	components: {
-		HelloWorld
-	}
+		UsersList
+	},
+	computed: mapGetters([ 'users' ]),
+	created() {
+		this.fetchUsers()
+	},
+	methods: mapActions([ 'fetchUsers' ])
 }
 </script>
 
 <style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-	margin-top: 60px;
-}
+
 </style>
