@@ -1,5 +1,5 @@
 <template>
-	<div class="ui items">
+	<div class="ui stackable grid">
 		<User
 			v-for="user in users"
 			:key="user.id"

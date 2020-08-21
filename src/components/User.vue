@@ -1,22 +1,26 @@
 <template>
-	<div class="item">
-		<div class="image">
-			<img src="https://semantic-ui.com/images/avatar/large/stevie.jpg">
-		</div>
-		<div class="content">
-			<div class="header">
-				{{ user.name }}
-			</div>
+	<div class="eight wide computer column">
+		<div class="ui items unstackable">
+			<div class="item unstackable">
+				<div class="image">
+					<img src="https://semantic-ui.com/images/avatar/large/stevie.jpg">
+				</div>
+				<div class="content">
+					<div class="header">
+						{{ user.name }}
+					</div>
 
-			<div class="meta">
-				<span>{{ user.company.name }}</span>
-			</div>
-			<div class="description">
-				{{ user.phone }}
-			</div>
-			<div class="extra">
-				<p>{{ user.email }}</p>
-				<p>{{ user.website }}</p>
+					<div class="meta">
+						<span>{{ user.company.name }}</span>
+					</div>
+					<div class="description">
+						{{ user.phone }}
+					</div>
+					<div class="extra">
+						<p>{{ user.email }}</p>
+						<p>{{ user.website }}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
