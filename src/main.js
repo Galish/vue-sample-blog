@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App.vue'
+import App from './views/Users.vue'
 import 'semantic-ui-css/semantic.min.css'
 
 import store from './store'

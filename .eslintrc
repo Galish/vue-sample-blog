@@ -29,7 +29,8 @@
         "semi": 0,
         "no-mixed-spaces-and-tabs": 1,
         "vue/html-indent": [ 1, "tab" ],
-        "vue/script-indent": [ 1, "tab" ]
+        "vue/script-indent": [ 1, "tab" ],
+        "vue/attribute-hyphenation": [ 0, "never"]
 
     },
     "root": true,

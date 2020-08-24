@@ -1,8 +1,9 @@
 <template>
 	<div class="ui stackable grid">
 		<User
-			v-for="user in users"
+			v-for="(user, index) in users"
 			:key="user.id"
+			:index="index"
 			:user="user"
 		/>
 	</div>
