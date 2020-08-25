@@ -3,9 +3,7 @@
 		<div class="ui items unstackable">
 			<div class="item unstackable">
 				<div class="image">
-					<img
-						:src="avatarSrc"
-					>
+					<img :src="avatarSrc">
 				</div>
 
 				<div class="content">
@@ -23,21 +21,24 @@
 					</template>
 
 					<div
-						v-if="user.phone"
+						v-if="user.phone || user.email || user.website"
 						class="description"
 					>
-						{{ user.phone }}
-					</div>
+						<p v-if="user.phone">
+							<i class="phone square icon" />
 
-					<div
-						v-if="user.email || user.website"
-						class="extra"
-					>
+							{{ user.phone }}
+						</p>
+
 						<p v-if="user.email">
+							<i class="mail square icon" />
+
 							{{ user.email }}
 						</p>
 
 						<p v-if="user.website">
+							<i class="external square icon" />
+
 							{{ user.website }}
 						</p>
 					</div>
@@ -50,12 +51,19 @@
 <script>
 const AVATARS = [
 	'https://semantic-ui.com/images/avatar/large/stevie.jpg',
-	'https://semantic-ui.com/images/avatar/large/jenny.jpg'
+	'https://semantic-ui.com/images/avatar/large/jenny.jpg',
+	'https://semantic-ui.com/images/avatar2/large/elyse.png',
+	'https://semantic-ui.com/images/avatar2/large/kristy.png',
+	'https://semantic-ui.com/images/avatar2/large/matthew.png'
 ]
 
 export default {
 	name: 'User',
 	props: {
+		avatar: {
+			type: String,
+			default: ''
+		},
 		index: {
 			type: Number,
 			default: 0
@@ -67,7 +75,12 @@ export default {
 	},
 	computed: {
 		avatarSrc() {
-			return AVATARS[ this.index % 2 ]
+			return this.avatar || this.getUserAvatar()
+		}
+	},
+	methods: {
+		getUserAvatar() {
+			return AVATARS[ this.user.id % AVATARS.length ]
 		}
 	}
 }
