@@ -1,4 +1,9 @@
-# users-list
+# Vue sample blog app
+
+Visit [GitHub Pages link](https://galish.github.io/vue-sample-blog/).
+
+Application implemented using [Semantic UI](https://semantic-ui.com/) CSS framework.
+
 
 ## Project setup
 ```
