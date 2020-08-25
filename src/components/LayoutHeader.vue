@@ -8,7 +8,7 @@
 					src="@/assets/logo.png"
 				>
 				<div class="content">
-					Vue sample app
+					<slot />
 				</div>
 			</h2>
 		</div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-	name: 'Header'
+	name: 'LayoutHeader'
 }
 </script>
 
