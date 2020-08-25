@@ -1,18 +1,15 @@
 <template>
 	<div class="ui container">
-		<img
-			alt="Vue logo"
-			src="@/assets/logo.png"
-		>
+		<Header />
 
 		<UsersList
 			:users="users"
 		/>
 
 		<Navigation
-			:activePage="activePage"
-			:totalCount="usersTotalCount"
-			:pageSize="PAGE_SIZE"
+			:active-page="activePage"
+			:total-count="usersTotalCount"
+			:page-size="PAGE_SIZE"
 			@select="onPageSelect"
 		/>
 	</div>
@@ -21,6 +18,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
+import Header from '@/components/Header.vue'
 import Navigation from '@/components/Navigation.vue'
 import UsersList from '@/components/UsersList.vue'
 
@@ -29,6 +27,7 @@ const PAGE_SIZE = 6
 export default {
 	name: 'App',
 	components: {
+		Header,
 		Navigation,
 		UsersList
 	},
