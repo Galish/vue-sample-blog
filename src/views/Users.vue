@@ -1,15 +1,14 @@
 <template>
 	<layout>
-		<users-list
-			:users="users"
-		/>
-
 		<navigation
-			:active-page="activePage"
-			:total-count="usersTotalCount"
 			:page-size="PAGE_SIZE"
-			@select="onPageSelect"
-		/>
+			:total-count="usersTotalCount"
+			@fetchData="fetchData"
+		>
+			<users-list
+				:users="users"
+			/>
+		</navigation>
 
 		<template v-slot:footer>
 			&copy; 2020 Some footer text
@@ -33,28 +32,14 @@ export default {
 		Navigation,
 		UsersList
 	},
-	data() {
-		return {
-			activePage: 1
-		}
-	},
 	computed: mapGetters([ 'users', 'usersTotalCount' ]),
-	watch: {
-		activePage(page) {
-			this.fetchUsersPage(page)
-		}
-	},
 	created() {
 		this.PAGE_SIZE = PAGE_SIZE
-		this.fetchUsersPage()
 	},
 	methods: {
 		...mapActions([ 'fetchUsers' ]),
-		fetchUsersPage(page = 1) {
-			this.fetchUsers({ limit: PAGE_SIZE, page })
-		},
-		onPageSelect(activePage) {
-			this.activePage = activePage
+		fetchData(page = 1) {
+			this.fetchUsers({ limit: this.PAGE_SIZE, page })
 		}
 	}
 }
