@@ -3,10 +3,10 @@ import queryString from 'query-string'
 
 const URL = 'https://jsonplaceholder.typicode.com/users'
 
-const state = {
-	users: [],
+const initialState = () => ({
+	users: null,
 	usersTotalCount: 0
-}
+})
 
 const getters = {
 	users: state => state.users,
@@ -24,6 +24,10 @@ const actions = {
 
 		commit('setUsers', response.data)
 		commit('setUsersTotalCount', response.headers[ 'x-total-count' ])
+	},
+
+	clearUsers({ commit }) {
+		commit('setUsers', initialState().users)
 	}
 }
 
@@ -33,7 +37,7 @@ const mutations = {
 }
 
 export default {
-	state,
+	state: initialState(),
 	getters,
 	actions,
 	mutations
