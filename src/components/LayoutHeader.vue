@@ -1,7 +1,7 @@
 <template>
 	<div class="ui centered grid">
 		<div class="center aligned column">
-			<h2 class="ui dividing header">
+			<h2 class="ui header">
 				<img
 					class="ui centered mini image"
 					alt="Vue logo"
@@ -22,8 +22,8 @@ export default {
 </script>
 
 <style scoped>
-	.ui.dividing.header {
+	.ui.header {
 		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-bottom: 10px;
 	}
 </style>

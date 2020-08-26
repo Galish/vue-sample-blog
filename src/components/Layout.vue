@@ -1,8 +1,10 @@
 <template>
 	<div class="ui container">
-		<layout-header>
-			Vue sample app
+		<layout-header v-if="hasHeaderSlot">
+			<slot name="header" />
 		</layout-header>
+
+		<main-menu :items="menuItems" />
 
 		<slot />
 
@@ -15,14 +17,37 @@
 <script>
 import LayoutHeader from '@/components/LayoutHeader.vue'
 import LayoutFooter from '@/components/LayoutFooter.vue'
+import MainMenu from '@/components/MainMenu.vue'
 
 export default {
 	name: 'Layout',
 	components: {
 		LayoutHeader,
-		LayoutFooter
+		LayoutFooter,
+		MainMenu
+	},
+	data() {
+		return {
+			menuItems: [
+				{
+					id: 'home',
+					label: 'Home',
+					path: '/',
+					icon: 'newspaper outline'
+				},
+				{
+					id: 'users',
+					label: 'Users',
+					path: '/users',
+					icon: 'users'
+				}
+			]
+		}
 	},
 	computed: {
+		hasHeaderSlot() {
+			return !!this.$slots.header
+		},
 		hasFooterSlot() {
 			return !!this.$slots.footer
 		}
