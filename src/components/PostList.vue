@@ -1,13 +1,13 @@
 <template>
 	<div
-		v-if="users"
+		v-if="posts"
 		class="ui stackable grid"
 	>
-		<user-card
-			v-for="(user, index) in users"
-			:key="user.id"
+		<post-item
+			v-for="(post, index) in posts"
+			:key="post.id"
 			:index="index"
-			:user="user"
+			:post="post"
 		/>
 	</div>
 
@@ -18,25 +18,25 @@
 		<div
 			v-for="index in skeletonsCount"
 			:key="index"
-			class="eight wide computer column"
+			class="four wide computer column"
 		>
-			<user-skeleton />
+			<post-skeleton />
 		</div>
 	</div>
 </template>
 
 <script>
-import UserCard from './UserCard'
-import UserSkeleton from './UserSkeleton'
+import PostItem from '@/components/PostItem'
+import PostSkeleton from '@/components/PostSkeleton'
 
 export default {
-	name: 'UsersList',
+	name: 'PostList',
 	components: {
-		UserCard,
-		UserSkeleton
+		PostItem,
+		PostSkeleton
 	},
 	props: {
-		users: {
+		posts: {
 			type: Array,
 			default() {
 				return []
@@ -44,11 +44,8 @@ export default {
 		},
 		skeletonsCount: {
 			type: Number,
-			default: 5
+			default: 10
 		}
 	}
 }
 </script>
-
-<style scoped>
-</style>

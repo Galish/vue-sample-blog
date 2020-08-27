@@ -1,11 +1,14 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+
+import feed from './modules/feed'
 import users from './modules/users'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
 	modules: {
+		feed,
 		users
 	}
 })

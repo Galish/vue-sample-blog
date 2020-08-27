@@ -33,6 +33,12 @@ export default {
 					id: 'home',
 					label: 'Home',
 					path: '/',
+					icon: 'home'
+				},
+				{
+					id: 'feed',
+					label: 'Feed',
+					path: '/feed',
 					icon: 'newspaper outline'
 				},
 				{

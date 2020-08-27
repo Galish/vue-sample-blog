@@ -25,7 +25,7 @@
 
 <script>
 export default {
-	name: 'Navigation',
+	name: 'PageNavigation',
 	props: {
 		totalCount: {
 			type: Number,
@@ -61,3 +61,9 @@ export default {
 	}
 }
 </script>
+
+<style scoped>
+.item:not([class*='active']) {
+	cursor: pointer;
+}
+</style>

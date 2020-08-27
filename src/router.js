@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import FeedView from '@/views/FeedView.vue'
 import HomeView from '@/views/HomeView.vue'
 import UsersView from '@/views/UsersView.vue'
 
@@ -12,6 +13,11 @@ export default new Router({
 			path: '/',
 			name: 'home',
 			component: HomeView
+		},
+		{
+			path: '/feed',
+			name: 'feed',
+			component: FeedView
 		},
 		{
 			path: '/users',

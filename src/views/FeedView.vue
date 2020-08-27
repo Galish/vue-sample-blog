@@ -1,11 +1,11 @@
 <template>
 	<page-navigation
 		:page-size="PAGE_SIZE"
-		:total-count="usersTotalCount"
+		:total-count="postsTotalCount"
 		@fetchData="fetchData"
 	>
-		<users-list
-			:users="users"
+		<post-list
+			:posts="posts"
 		/>
 	</page-navigation>
 </template>
@@ -14,27 +14,27 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import PageNavigation from '@/components/PageNavigation.vue'
-import UsersList from '@/components/UsersList.vue'
+import PostList from '@/components/PostList.vue'
 
-const PAGE_SIZE = 6
+const PAGE_SIZE = 12
 
 export default {
-	name: 'UsersView',
+	name: 'FeedView',
 	components: {
 		PageNavigation,
-		UsersList
+		PostList
 	},
-	computed: mapGetters([ 'users', 'usersTotalCount' ]),
+	computed: mapGetters([ 'posts', 'postsTotalCount' ]),
 	created() {
 		this.PAGE_SIZE = PAGE_SIZE
 	},
 	beforeDestroy() {
-		this.clearUsers()
+		this.clearPosts()
 	},
 	methods: {
-		...mapActions([ 'fetchUsers', 'clearUsers' ]),
+		...mapActions([ 'fetchPosts', 'clearPosts' ]),
 		fetchData(page = 1) {
-			this.fetchUsers({ limit: this.PAGE_SIZE, page })
+			this.fetchPosts({ limit: this.PAGE_SIZE, page })
 		}
 	}
 }

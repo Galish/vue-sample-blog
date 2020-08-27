@@ -58,7 +58,7 @@ const AVATARS = [
 ]
 
 export default {
-	name: 'User',
+	name: 'UserCard',
 	props: {
 		avatar: {
 			type: String,
