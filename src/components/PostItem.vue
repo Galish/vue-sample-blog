@@ -17,7 +17,10 @@
 				</div>
 			</div>
 
-			<div class="extra content">
+			<div
+				v-if="post.author"
+				class="extra content"
+			>
 				<div class="right floated author">
 					<img
 						class="ui avatar image"

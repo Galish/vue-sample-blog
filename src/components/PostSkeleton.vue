@@ -21,6 +21,15 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="extra content">
+				<div class="right floated author">
+					<div class="ui avatar image placeholder" />
+					<div class="ui fluid placeholder">
+						<div class="line" />
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -43,5 +52,11 @@ export default {
 
 .ui.placeholder .paragraph .line {
 	font-size: 16px;
+}
+
+.extra.content .ui.fluid.placeholder {
+	width: 80px;
+	display: inline-block;
+	margin-top: 0;
 }
 </style>
