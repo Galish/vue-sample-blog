@@ -8,7 +8,7 @@
 
 				<div class="meta">
 					<span class="category">
-						25.08.2020
+						2 days ago
 					</span>
 				</div>
 
@@ -16,12 +16,22 @@
 					{{ capitalize(post.body) }}
 				</div>
 			</div>
+
+			<div class="extra content">
+				<div class="right floated author">
+					<img
+						class="ui avatar image"
+						:src="avatarSrc"
+					>
+					{{ post.author.name }}
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import { capitalize } from '@/utils'
+import { capitalize, getUserAvatar } from '@/helpers'
 
 export default {
 	name: 'PostItem',
@@ -31,8 +41,14 @@ export default {
 			required: true
 		}
 	},
+	computed: {
+		avatarSrc() {
+			return this.getUserAvatar(this.post.author.id)
+		}
+	},
 	methods: {
-		capitalize
+		capitalize,
+		getUserAvatar
 	}
 }
 </script>

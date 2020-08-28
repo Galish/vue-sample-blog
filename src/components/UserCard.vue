@@ -49,13 +49,7 @@
 </template>
 
 <script>
-const AVATARS = [
-	'https://semantic-ui.com/images/avatar/large/stevie.jpg',
-	'https://semantic-ui.com/images/avatar/large/jenny.jpg',
-	'https://semantic-ui.com/images/avatar2/large/elyse.png',
-	'https://semantic-ui.com/images/avatar2/large/kristy.png',
-	'https://semantic-ui.com/images/avatar2/large/matthew.png'
-]
+import { getUserAvatar } from '@/helpers'
 
 export default {
 	name: 'UserCard',
@@ -75,13 +69,11 @@ export default {
 	},
 	computed: {
 		avatarSrc() {
-			return this.avatar || this.getUserAvatar()
+			return this.avatar || this.getUserAvatar(this.user.id)
 		}
 	},
 	methods: {
-		getUserAvatar() {
-			return AVATARS[ this.user.id % AVATARS.length ]
-		}
+		getUserAvatar
 	}
 }
 </script>

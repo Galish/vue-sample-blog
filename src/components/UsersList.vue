@@ -15,13 +15,10 @@
 		v-else
 		class="ui stackable grid"
 	>
-		<div
+		<user-skeleton
 			v-for="index in skeletonsCount"
 			:key="index"
-			class="eight wide computer column"
-		>
-			<user-skeleton />
-		</div>
+		/>
 	</div>
 </template>
 

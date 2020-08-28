@@ -15,13 +15,10 @@
 		v-else
 		class="ui stackable grid"
 	>
-		<div
+		<post-skeleton
 			v-for="index in skeletonsCount"
 			:key="index"
-			class="four wide computer column"
-		>
-			<post-skeleton />
-		</div>
+		/>
 	</div>
 </template>
 

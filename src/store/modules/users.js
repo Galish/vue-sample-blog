@@ -10,6 +10,9 @@ const initialState = () => ({
 
 const getters = {
 	users: state => state.users,
+	usersByID: state => (ids = []) => (
+		(state.users || []).filter(({ id }) => ids.includes(id))
+	),
 	usersTotalCount: state => state.usersTotalCount
 }
 
@@ -26,12 +29,19 @@ const actions = {
 		commit('setUsersTotalCount', response.headers[ 'x-total-count' ])
 	},
 
+	async fetchUser({ commit }, { id }) {
+		const response = await axios.get(`${URL}/${id}`)
+
+		commit('appendUser', response.data)
+	},
+
 	clearUsers({ commit }) {
 		commit('setUsers', initialState().users)
 	}
 }
 
 const mutations = {
+	appendUser: (state, user) => state.users = [ ...(state.users || []), user ],
 	setUsers: (state, users) => state.users = users,
 	setUsersTotalCount: (state, totalCount) => state.usersTotalCount = parseInt(totalCount)
 }
