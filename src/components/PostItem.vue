@@ -1,27 +1,42 @@
 <template>
 	<div class="eight wide tablet four wide computer column">
 		<div class="ui raised card unstackable">
-			<div class="content">
+			<div
+				class="content"
+				:class="{ 'center aligned': view === 'short' }"
+			>
 				<div class="header">
 					{{ capitalize(post.title) }}
 				</div>
 
-				<div class="meta">
+				<div
+					v-if="view !== 'short'"
+					class="meta"
+				>
 					<span class="category">
-						2 days ago
+						{{ dateStamp }}
 					</span>
 				</div>
 
-				<div class="description">
-					{{ capitalize(post.body) }}
+				<div
+					class="description"
+				>
+					{{ capitalize(postBody) }}
 				</div>
 			</div>
 
 			<div
 				v-if="post.author"
 				class="extra content"
+				:class="{ 'center': view === 'short' }"
 			>
-				<div class="right floated author">
+				<div
+					class="author"
+					:class="{
+						'right floated': view === 'full',
+						'center aligned': view === 'short'
+					}"
+				>
 					<img
 						class="ui avatar image"
 						:src="avatarSrc"
@@ -34,24 +49,36 @@
 </template>
 
 <script>
-import { capitalize, getUserAvatar } from '@/helpers'
+import { capitalize, getUserAvatar, truncate } from '@/helpers'
 
 export default {
 	name: 'PostItem',
 	props: {
+		dateStamp: {
+			type: String,
+			default: '2 days ago'
+		},
 		post: {
 			type: Object,
 			required: true
+		},
+		view: {
+			type: String,
+			default: 'full'
 		}
 	},
 	computed: {
 		avatarSrc() {
 			return this.getUserAvatar(this.post.author.id)
+		},
+		postBody() {
+			return this.view === 'short' ? truncate(this.post.body) : this.post.body
 		}
 	},
 	methods: {
 		capitalize,
-		getUserAvatar
+		getUserAvatar,
+		truncate
 	}
 }
 </script>

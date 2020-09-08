@@ -1,30 +1,54 @@
 <template>
 	<div class="eight wide tablet four wide computer column">
 		<div class="ui raised card unstackable">
-			<div class="content">
+			<div class="content center aligned">
 				<div class="ui fluid placeholder">
 					<div class="header">
 						<div class="line" />
+
 						<div class="line mobile or lower hidden" />
-						<div class="line tablet or lower hidden" />
+
+						<div
+							v-if="view !== 'short'"
+							class="line tablet or lower hidden"
+						/>
 					</div>
 
-					<div class="paragraph">
+					<div
+						v-if="view !== 'short'"
+						class="paragraph"
+					>
 						<div class="short line" />
 					</div>
 
 					<div class="paragraph">
 						<div class="line" />
-						<div class="line mobile or lower hidden" />
-						<div class="line tablet or lower hidden" />
+
+						<div
+							v-if="view !== 'short'"
+							class="line mobile or lower hidden"
+						/>
+
+						<div
+							v-if="view !== 'short'"
+							class="line tablet or lower hidden"
+						/>
+
 						<div class="short line" />
 					</div>
 				</div>
 			</div>
 
 			<div class="extra content">
-				<div class="right floated author">
+				<div
+					class="author"
+					:class="{
+						'right floated': view === 'full',
+						'center aligned': view === 'short'
+					}"
+				>
 					<div class="ui avatar image placeholder" />
+
 					<div class="ui fluid placeholder">
 						<div class="line" />
 					</div>
@@ -36,7 +60,13 @@
 
 <script>
 export default {
-	name: 'PostSkeleton'
+	name: 'PostSkeleton',
+	props: {
+		view: {
+			type: String,
+			default: 'full'
+		}
+	}
 }
 </script>
 

@@ -3,11 +3,19 @@
 		v-if="posts"
 		class="ui stackable grid"
 	>
+		<div
+			v-if="hasSlot"
+			class="sixteen wide tablet eight wide computer column"
+		>
+			<slot />
+		</div>
+
 		<post-item
 			v-for="(post, index) in posts"
 			:key="post.id"
 			:index="index"
 			:post="post"
+			:view="view"
 		/>
 	</div>
 
@@ -18,6 +26,7 @@
 		<post-skeleton
 			v-for="index in skeletonsCount"
 			:key="index"
+			:view="view"
 		/>
 	</div>
 </template>
@@ -42,7 +51,16 @@ export default {
 		skeletonsCount: {
 			type: Number,
 			default: 10
+		},
+		view: {
+			type: String,
+			default: 'full'
 		}
+	},
+	computed: {
+		hasSlot() {
+			return !!this.$slots.default
+		},
 	}
 }
 </script>

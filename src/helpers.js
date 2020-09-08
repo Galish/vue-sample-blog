@@ -15,3 +15,7 @@ export const capitalize = string => {
 }
 
 export const getUserAvatar = id => AVATARS[ id % AVATARS.length ]
+
+export const truncate = (text, maxLength = 100) => (
+	`${text.slice(0, maxLength).split(' ').slice(0, -1).join(' ')}...`
+)
