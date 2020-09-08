@@ -15,6 +15,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 import PageNavigation from '@/components/PageNavigation.vue'
 import PostList from '@/components/PostList.vue'
+import { postsWithAuthorsMixin } from '@/mixins'
 
 const PAGE_SIZE = 12
 
@@ -24,60 +25,18 @@ export default {
 		PageNavigation,
 		PostList
 	},
-	computed: {
-		...mapGetters([ 'users', 'posts', 'postsTotalCount' ]),
-		authorIDs() {
-			const set = new Set();
-
-			(this.posts || []).forEach(({ userId }) => set.add(userId))
-
-			return [ ...set ]
-		},
-		authorsMap() {
-			return (this.users || [])
-				.filter(({ id }) => this.authorIDs.includes(id))
-				.reduce((acc, user) => ({
-					...acc,
-					[ user.id ]: user
-				}), {})
-		},
-		postsWithAutorData() {
-			if (
-				!this.posts
-				||
-				!this.posts.every(({ userId }) => this.authorsMap[ userId ])
-			) {
-				return null
-			}
-			return this.posts.map(({ userId, ...post }) => ({
-				...post,
-				author: this.authorsMap[ userId ]
-			}))
-		}
-	},
-	watch: {
-		posts() {
-			this.fetchAuthors()
-		}
-	},
+	mixins: [ postsWithAuthorsMixin ],
+	computed: mapGetters([ 'posts', 'postsTotalCount' ]),
 	created() {
 		this.PAGE_SIZE = PAGE_SIZE
 	},
 	beforeDestroy() {
 		this.clearPosts()
-		this.clearUsers()
 	},
 	methods: {
-		...mapActions([ 'fetchPosts', 'clearPosts', 'fetchUser', 'clearUsers' ]),
+		...mapActions([ 'fetchPosts', 'clearPosts' ]),
 		fetchData(page = 1) {
 			this.fetchPosts({ limit: this.PAGE_SIZE, page })
-		},
-		fetchAuthors() {
-			const existing = (this.users || []).map(({ id }) => id)
-			const missing = this.authorIDs.filter(id => !existing.includes(id))
-			const promises = missing.map(id => this.fetchUser({ id }))
-
-			return Promise.all(promises)
 		}
 	}
 }
