@@ -22,3 +22,13 @@ export default {
 	}
 }
 </script>
+
+<style>
+body a {
+	color: #41B883;
+}
+body a:hover {
+	color: #41B883;
+	text-decoration: underline;
+}
+</style>

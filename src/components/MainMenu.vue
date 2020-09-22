@@ -43,7 +43,11 @@ export default {
 </script>
 
 <style scoped="">
-	.ui.menu {
-		margin-bottom: 40px;
-	}
+.ui.menu {
+	margin-bottom: 40px;
+}
+.ui.menu .item.active {
+	color: white;
+	background-color: #41B883;
+}
 </style>

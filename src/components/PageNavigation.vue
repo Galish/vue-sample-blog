@@ -63,7 +63,11 @@ export default {
 </script>
 
 <style scoped>
-.item:not([class*='active']) {
+.ui.pagination.menu .active.item {
+	color: white;
+	background-color: #41B883;
+}
+.ui.pagination.menu .item:not([class*='active']) {
 	cursor: pointer;
 }
 </style>

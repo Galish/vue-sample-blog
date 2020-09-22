@@ -22,8 +22,9 @@ export default {
 </script>
 
 <style scoped>
-	.ui.header {
-		padding-top: 20px;
-		padding-bottom: 10px;
-	}
+.ui.header {
+	color: #34495E;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
 </style>
