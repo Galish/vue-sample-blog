@@ -6,7 +6,12 @@
 				:class="{ 'center aligned': view === 'short' }"
 			>
 				<div class="header">
-					{{ capitalize(post.title) }}
+					<router-link
+						:is="!hideLink && 'router-link' || 'fragment'"
+						:to="`/feed/${post.id}`"
+					>
+						{{ capitalize(post.title) }}
+					</router-link>
 				</div>
 
 				<div
@@ -57,6 +62,10 @@ export default {
 		dateStamp: {
 			type: String,
 			default: '2 days ago'
+		},
+		hideLink: {
+			type: Boolean,
+			default: false
 		},
 		post: {
 			type: Object,

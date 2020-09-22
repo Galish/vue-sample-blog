@@ -7,7 +7,7 @@
 			v-for="(user, index) in users"
 			:key="user.id"
 			:index="index"
-			:user="user"
+			v-bind="user"
 		/>
 	</div>
 

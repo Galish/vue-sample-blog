@@ -8,38 +8,38 @@
 
 				<div class="content">
 					<div class="header">
-						{{ user.name }}
+						{{ name }}
 					</div>
 
-					<template v-if="user.company">
+					<template v-if="company">
 						<div
-							v-if="user.company.name"
+							v-if="company.name"
 							class="meta"
 						>
-							<span>{{ user.company.name }}</span>
+							<span>{{ company.name }}</span>
 						</div>
 					</template>
 
 					<div
-						v-if="user.phone || user.email || user.website"
+						v-if="phone || email || website"
 						class="description"
 					>
-						<p v-if="user.phone">
+						<p v-if="phone">
 							<i class="phone square icon" />
 
-							{{ user.phone }}
+							{{ phone }}
 						</p>
 
-						<p v-if="user.email">
+						<p v-if="email">
 							<i class="mail square icon" />
 
-							{{ user.email }}
+							{{ email }}
 						</p>
 
-						<p v-if="user.website">
+						<p v-if="website">
 							<i class="external square icon" />
 
-							{{ user.website }}
+							{{ website }}
 						</p>
 					</div>
 				</div>
@@ -62,14 +62,37 @@ export default {
 			type: Number,
 			default: 0
 		},
-		user: {
-			type: Object,
+		id: {
+			type: Number,
 			required: true
+		},
+		name: {
+			type: String,
+			required: true,
+			default: ''
+		},
+		company: {
+			type: Object,
+			default() {
+				return {}
+			}
+		},
+		phone: {
+			type: String,
+			default: ''
+		},
+		email: {
+			type: String,
+			default: ''
+		},
+		website: {
+			type: String,
+			default: ''
 		}
 	},
 	computed: {
 		avatarSrc() {
-			return this.avatar || this.getUserAvatar(this.user.id)
+			return this.avatar || this.getUserAvatar(this.id)
 		}
 	},
 	methods: {
