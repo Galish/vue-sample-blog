@@ -1,33 +1,37 @@
 <template>
 	<div
-		v-if="posts"
 		class="ui stackable grid"
 	>
-		<div
-			v-if="hasSlot"
-			class="sixteen wide tablet eight wide computer column"
-		>
-			<slot />
-		</div>
+		<fragment v-if="hasSlot">
+			<div
+				v-for="className in [
+					'center aligned sixteen wide column tablet mobile only',
+					'eight wide column tablet or lower hidden'
+				]"
+				:key="className"
+				:class="className"
+			>
+				<slot />
+			</div>
+		</fragment>
 
-		<post-item
-			v-for="(post, index) in posts"
-			:key="post.id"
-			:index="index"
-			:post="post"
-			:view="view"
-		/>
-	</div>
+		<fragment v-if="posts">
+			<post-item
+				v-for="(post, index) in posts"
+				:key="post.id"
+				:index="index"
+				:post="post"
+				:view="view"
+			/>
+		</fragment>
 
-	<div
-		v-else
-		class="ui stackable grid"
-	>
-		<post-skeleton
-			v-for="index in skeletonsCount"
-			:key="index"
-			:view="view"
-		/>
+		<fragment v-else>
+			<post-skeleton
+				v-for="index in skeletonsCount"
+				:key="index"
+				:view="view"
+			/>
+		</fragment>
 	</div>
 </template>
 
